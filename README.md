@@ -5,6 +5,12 @@
      /_/   \_\_/\_/  |____/   \____|_|\___/ \__,_|\__,_|  /_/ 
  ----------------------------------------------------------------- 
 
+Clone this repo using the https method since we do not have SSH set up yet
+
+```
+git clone https://github.com/schof/cloud9.git
+cd cloud9
+```
 
 Install the thor gem
 
