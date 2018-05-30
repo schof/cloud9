@@ -19,14 +19,10 @@ class Cloud9 < Thor
   
   desc "install", "installs a custom Cloud9 setup"
   def install
+    ## generate ssh key
     # email = ask 'What is the email you wish to use for Git commits?'
-    
-    # ## generate ssh key
     # debug 'Generating SSH key'
     # system "ssh-keygen -t rsa -b 4096 -C \"#{email}\" -q -P \"\" -f ~/.ssh/id_rsa"
-
-    # system 'eval "$(ssh-agent -s)"'
-    # system 'ssh-add ~/.ssh/id_rsa'
 
     # system 'cat ~/.ssh/id_rsa.pub'
     # warn 'Please add the above SSH key to your Github profile (see https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/ for details):'
@@ -48,12 +44,12 @@ class Cloud9 < Thor
     # debug 'Installing Babel'
     # system 'npm install babel-cli -g'
     
-    # debug 'Install dotfiles'
-    # Dir.chdir('/home/ec2-user') do
-    #   system 'git clone https://github.com/schof/dotfiles.git .dotfiles'
-    #   system 'cd .dotfiles'
-    #   system './install.rb'
-    # end
+    debug 'Install dotfiles'
+    Dir.chdir('/home/ec2-user') do
+      system 'git clone git@github.com:schof/dotfiles.git .dotfiles'
+      system 'cd .dotfiles'
+      system './install.rb'
+    end
 
   end
 end
