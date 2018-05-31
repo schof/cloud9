@@ -52,6 +52,8 @@ class Cloud9 < Thor
     end
     Dir.chdir('/home/ec2-user/.dotfiles') do
       system './install.rb'
-    end      
+    end     
+    system 'source ~/.bashrc'
+
   end
 end
