@@ -20,36 +20,38 @@ class Cloud9 < Thor
   desc "install", "installs a custom Cloud9 setup"
   def install
     ## generate ssh key
-    # email = ask 'What is the email you wish to use for Git commits?'
-    # debug 'Generating SSH key'
-    # system "ssh-keygen -t rsa -b 4096 -C \"#{email}\" -q -P \"\" -f ~/.ssh/id_rsa"
+    email = ask 'What is the email you wish to use for Git commits?'
+    debug 'Generating SSH key'
+    system "ssh-keygen -t rsa -b 4096 -C \"#{email}\" -q -P \"\" -f ~/.ssh/id_rsa"
 
-    # system 'cat ~/.ssh/id_rsa.pub'
-    # warn 'Please add the above SSH key to your Github profile (see https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/ for details):'
+    system 'cat ~/.ssh/id_rsa.pub'
+    warn 'Please add the above SSH key to your Github profile (see https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/ for details):'
     
-    # ask 'Please hit enter when ready to continue'
+    ask 'Please hit enter when ready to continue'
 
-    # debug 'Installing Node 8.10'
-    # system 'export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && nvm i v8.10'
+    debug 'Installing Node 8.10'
+    system 'export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh && nvm i v8.10'
     
-    # debug 'Installing Yarn'
-    # system 'npm install -g yarn'
+    debug 'Installing Yarn'
+    system 'npm install -g yarn'
     
-    # debug 'Installing Bundler'
-    # system 'gem install bundler'
+    debug 'Installing Bundler'
+    system 'gem install bundler'
     
-    # debug 'Installing Webpack'
-    # system 'npm install webpack-cli -g'
+    debug 'Installing Webpack'
+    system 'npm install webpack-cli -g'
     
-    # debug 'Installing Babel'
-    # system 'npm install babel-cli -g'
+    debug 'Installing Babel'
+    system 'npm install babel-cli -g'
     
     debug 'Install dotfiles'
+    system 'mv /home/ec2-user/.bashrc /home/ec2-user/.bashrc.cloud9' 
+    system 'mv /home/ec2-user/.gitconfig /home/ec2-user/.gitconfig.cloud9'
     Dir.chdir('/home/ec2-user') do
       system 'git clone git@github.com:schof/dotfiles.git .dotfiles'
-      system 'cd .dotfiles'
-      system './install.rb'
     end
-
+    Dir.chdir('/home/ec2-user/.dotfiles') do
+      system './install.rb'
+    end      
   end
 end
