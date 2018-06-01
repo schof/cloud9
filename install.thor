@@ -55,5 +55,8 @@ class Cloud9 < Thor
     end     
     system 'source ~/.bashrc'
 
+    debug 'Installing eslint'
+    system 'npm install eslint -g'
+    system 'npm install eslint-plugin-jest -g'
   end
 end
